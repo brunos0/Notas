@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:provaflutter/utils/custom_text_field.dart';
+import 'package:provaflutter/pages/policy_terms.dart';
+import 'package:provaflutter/utils/app_routes.dart';
+import 'package:provaflutter/components/custom_text_field.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Prova Flutter - Bruno Horvat',
-      home: MyHomePage(title: 'Prova Flutter'),
+      home: const MyHomePage(title: 'Prova Flutter'),
+      routes: {
+        AppRoutes.policyTerms: (ctx) => const PolicyTerms(),
+      },
     );
   }
 }
@@ -31,6 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  void teste() {
+    Navigator.of(context).pushNamed(AppRoutes.policyTerms);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    teste();
+                  },
                   child: const Text(
                     "Política de Privacidade",
                     style: TextStyle(
