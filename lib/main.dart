@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final LoginValidation _validator = LoginValidation();
-  final bool _obscureText = true;
+  final bool _obscureText = false;
   final FormError formError = FormError();
 
   void openPolicy() {
