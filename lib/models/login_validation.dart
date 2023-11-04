@@ -6,9 +6,9 @@ class LoginValidation {
   final regex = RegExp(r'^[a-zA-Z0-9]+$');
 
   validField(String data, FormError formError, String label) {
-    if (!regex.hasMatch(data)) {
+    if (!regex.hasMatch(data) || data.length < 2) {
       formError.errorHappend(label);
-      return 'Por favor, use apenas letras.';
+      return 'Erro';
     }
     return null;
   }

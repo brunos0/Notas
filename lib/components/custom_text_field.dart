@@ -46,7 +46,6 @@ class CustomTextField extends StatelessWidget {
               onSaved: (data) => validator.saveData(label, data ?? ""),
               validator: (_) =>
                   validator.validField(controller.text, formError, label),
-              //inputFormatters: [],
               obscureText: obscureText,
               textAlign: TextAlign.left,
               controller: controller,
@@ -65,12 +64,14 @@ class CustomTextField extends StatelessWidget {
             )),
         Observer(
             builder: (_) => Visibility(
-                visible: formError.fields[label]!, //.fields[label]!,
-                child: const Padding(
-                  padding: EdgeInsets.only(top: 10),
+                visible: formError.fields[label]!,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    "Por favor, use apenas letras ou números.",
-                    style: TextStyle(
+                    controller.text.length < 2
+                        ? "Necessário no mínimo duas letras ou números"
+                        : "Use apenas letras ou números.",
+                    style: const TextStyle(
                       color: Colors.red,
                     ),
                   ),
