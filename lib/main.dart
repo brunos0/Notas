@@ -3,6 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:provaflutter/pages/policy_terms.dart';
 import 'package:provaflutter/utils/app_routes.dart';
 import 'package:provaflutter/components/custom_text_field.dart';
+import './models/login_validation.dart';
+
+import 'package:mobx/mobx.dart';
+import 'models/form_error.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,11 +37,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _userController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _userController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final LoginValidation _validator = LoginValidation();
+  final bool _obscureText = true;
+  final FormError formError = FormError();
 
-  void teste() {
+  void openPolicy() {
     Navigator.of(context).pushNamed(AppRoutes.policyTerms);
   }
 
@@ -62,10 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomTextField(
-                        "Usuário", const Icon(Icons.person), _userController),
-                    CustomTextField(
-                        "Senha", const Icon(Icons.lock), _passwordController),
+                    CustomTextField("Usuário", const Icon(Icons.person),
+                        _obscureText, _userController, _formKey, formError),
+                    CustomTextField("Senha", const Icon(Icons.lock),
+                        _obscureText, _passwordController, _formKey, formError),
                     const Gap(10),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -75,7 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         padding: const EdgeInsets.fromLTRB(60, 15, 60, 15),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _validator.submmit(_formKey);
+                      },
                       child: const Text(
                         "Entrar",
                         style: TextStyle(
@@ -94,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
                   onPressed: () {
-                    teste();
+                    openPolicy();
                   },
                   child: const Text(
                     "Política de Privacidade",

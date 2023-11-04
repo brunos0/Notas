@@ -1,16 +1,16 @@
-# provaflutter
+# Notes
 
-A new Flutter project.
+A tester concept program that implements Mobx, SharedPreferences and anothers libraries.  
 
-## Getting Started
+## Getting Started  
 
-This project is a starting point for a Flutter application.
+This project is just for test purposes. 
 
-A few resources to get you started if this is your first Flutter project:
+## What's new  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Version 1.0.1 - Make the validation for Login Screen. 
+Version 1.0.0 - Bring Login screen, without any kind of validation. Implement WebView for Policy terms.  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## To Do  
+
+Change deprecated flutter_webview_plugin for url_lancher for better support. 
