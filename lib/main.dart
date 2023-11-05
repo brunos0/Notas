@@ -50,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pushNamed(AppRoutes.policyTerms);
   }
 
+//colocar um singlechildscrowview para tratar telas pequenas
   @override
   Widget build(BuildContext context) {
     return Scaffold(
