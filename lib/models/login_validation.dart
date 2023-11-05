@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provaflutter/models/form_error.dart';
+import 'package:provaflutter/utils/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginValidation {
@@ -13,47 +14,15 @@ class LoginValidation {
     return null;
   }
 
-  submmit(GlobalKey<FormState> formKey) {
+  submmit(GlobalKey<FormState> formKey, context) {
     final isValid = formKey.currentState?.validate() ?? false;
 
     if (!isValid) {
       return;
     }
 
-    //final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-    /*
-    setState(() {
-      _isLoading = true;
-    });
-    */
     formKey.currentState?.save();
-
-    //Auth auth = Provider.of(context, listen: false);
-
-    /*
-    try {
-      if (_isLogin()) {
-        await auth.login(
-          _autData["email"]!,
-          _autData["password"]!,
-        );
-      } else {
-        await auth.signup(
-          _autData["email"]!,
-          _autData["password"]!,
-        );
-      }
-    } on AuthException catch (error) {
-      _showErroDialog(error.toString());
-    } catch (error) {
-      _showErroDialog("Ocorreu um erro inesperado.");
-    }
-
-    setState(() {
-      _isLoading = false;
-    });
- 
-*/
+    Navigator.of(context).pushNamed(AppRoutes.notesPage);
   }
 
   saveData(String label, String data) async {

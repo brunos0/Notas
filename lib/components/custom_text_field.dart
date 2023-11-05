@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:provaflutter/models/form_error.dart';
 import '../models/login_validation.dart';
@@ -42,6 +43,7 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(66.0),
             child: TextFormField(
               onTap: () => {formError.clearError(label)},
+              onChanged: (_) => {formError.clearError(label)},
               maxLength: 20,
               onSaved: (data) => validator.saveData(label, data ?? ""),
               validator: (_) =>

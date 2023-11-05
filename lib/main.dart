@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provaflutter/pages/notes_page.dart';
 import 'package:provaflutter/pages/policy_terms.dart';
 import 'package:provaflutter/utils/app_routes.dart';
 import 'package:provaflutter/components/custom_text_field.dart';
 import './models/login_validation.dart';
 
-import 'package:mobx/mobx.dart';
 import 'models/form_error.dart';
 
 void main() {
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Prova Flutter'),
       routes: {
         AppRoutes.policyTerms: (ctx) => const PolicyTerms(),
+        AppRoutes.notesPage: (ctx) => NotesPage()
       },
     );
   }
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.fromLTRB(60, 15, 60, 15),
                       ),
                       onPressed: () {
-                        _validator.submmit(_formKey);
+                        _validator.submmit(_formKey, context);
                       },
                       child: const Text(
                         "Entrar",
