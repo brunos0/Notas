@@ -21,26 +21,23 @@ class NotesPage extends StatelessWidget {
               ),
             ),
             //
-            Center( child:
-                 ClipPath(
-              clipper: CurveClipper(),
-              child: Container(
-                color: Colors.red,
-                height: 200.0,
-              ),
-            )
-                  /*
+            Center(
+              child: ClipPath(
+                clipper: CurveClipper(),
+                child: Container(
+                  color: Colors.red,
+                  height: 200.0,
+                ),
+              )
+              /*
                     ListView.builder(
                         itemCount: 0,
                         itemBuilder: (BuildContext ctx, int index) {
                           return ListTile(title: Text(listNotes[index]));
                         }))
                     */
-                  ,
-                ),
-                */
-
-                ),
+              ,
+            ),
           ],
         ),
       ),
