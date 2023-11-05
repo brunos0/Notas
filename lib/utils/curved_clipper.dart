@@ -1,24 +1,24 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class CurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    int curveHeight = 40;
-    Offset controlPoint = Offset(size.width / 2, size.height + curveHeight);
-    Offset endPoint = Offset(size.width, size.height - curveHeight);
+    var path = Path();
+    var radius = 5.0;
 
-    Path path = Path()
-      ..lineTo(0, size.height - curveHeight)
-      ..quadraticBezierTo(
-          controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
-      ..lineTo(size.width, 0)
-      ..close();
+    path.moveTo(radius, 0);
+    path.lineTo(size.width - radius, 0);
+    path.cubicTo(size.width + radius, 0, size.width + radius, size.height,
+        size.width - radius, size.height);
+    path.lineTo(radius, size.height);
+    path.cubicTo(-radius, size.height, -radius, 0, radius, 0);
+    path.close();
 
     return path;
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
 }

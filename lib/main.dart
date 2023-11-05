@@ -9,7 +9,8 @@ import './models/login_validation.dart';
 import 'models/form_error.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(NotesPage());
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
