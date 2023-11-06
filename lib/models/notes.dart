@@ -8,7 +8,7 @@ class Notes = ANotes with _$Notes;
 
 abstract class ANotes with Store {
   @observable
-  ObservableList<String> _notes = ObservableList();
+  ObservableList<String> _notes = ObservableList.of([]);
 
   @action
   bool listEmpty() {
@@ -27,7 +27,6 @@ abstract class ANotes with Store {
 
   @action
   Future<void> remove(int index, BuildContext context) async {
-    print("entrou aqui");
     final bool? result = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) {
@@ -48,7 +47,7 @@ abstract class ANotes with Store {
                 },
               ),
               TextButton(
-                child: const Text('Sim'),
+                child: const Text('Não'),
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
@@ -57,11 +56,7 @@ abstract class ANotes with Store {
           );
         });
     if (result == true) {
-      print("verdade");
-      // Realize a ação aqui se o usuário clicar em 'Sim'
-    } else {
-      print("mentira");
-      // Realize a ação aqui se o usuário clicar em 'Não' ou fechar o diálogo
+      _notes.removeAt(index);
     }
   }
 
@@ -71,9 +66,9 @@ abstract class ANotes with Store {
     if (prefs.getStringList('notes') == null) {
       await prefs.setStringList('notes', <String>[]);
     }
-    await prefs.setStringList('notes', ["Bruno"]);
-    _notes.addAll(prefs
-        .getStringList('notes')!
-        .toList()); //= prefs.getStringList('notes')!;
+    await prefs.setStringList('notes', ["Bruno", "Cesar", "Horvat"]);
+    _notes.clear();
+    _notes.addAll(
+        prefs.getStringList('notes')!); //= prefs.getStringList('notes')!;
   }
 }
