@@ -57,10 +57,10 @@ class CustomInputField extends StatelessWidget {
                 controller: controller,
                 decoration: InputDecoration(
                     hintText: hint,
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                         color: Colors.black87,
                         fontFamily:
-                            'Dalle_light', //trocar a fonte por uma mais grossa
+                            'Dalle_bold', //trocar a fonte por uma mais grossa
                         letterSpacing: 0.50,
                         fontWeight: FontWeight.bold),
                     //isDense: true,

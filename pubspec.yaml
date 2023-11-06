@@ -85,6 +85,9 @@ flutter:
     - family: Dalle_light
       fonts:
         - asset: assets/font/Dalle_light.otf
+  #  - family: Dalle_light
+  #    fonts:
+        - asset: assets/font/Dalle_bold.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
