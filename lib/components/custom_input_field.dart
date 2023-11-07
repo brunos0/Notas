@@ -12,16 +12,24 @@ class CustomInputField extends StatelessWidget {
   final String hint;
   final bool obscureText;
   final TextEditingController controller;
+  final FocusNode inputFocus;
   final GlobalKey<FormState> formKey;
-  final FormError formError;
+  final Future<void> Function(BuildContext, TextEditingController) save;
 
-  const CustomInputField(this.label, this.icon, this.size, this.hint,
-      this.obscureText, this.controller, this.formKey, this.formError,
+  const CustomInputField(
+      this.label,
+      this.icon,
+      this.size,
+      this.hint,
+      this.obscureText,
+      this.controller,
+      this.inputFocus,
+      this.formKey,
+      this.save,
       {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final validator = LoginValidation();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,25 +41,29 @@ class CustomInputField extends StatelessWidget {
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontFamily: 'Dalle_light',
+              color: Colors.black87,
+              fontFamily: 'Dalle_bold',
               letterSpacing: 1.00,
             ),
           ),
         ),
         const Gap(5),
         Material(
-            elevation: 5.0,
-            borderRadius: BorderRadius.circular(66.0),
-            child: SizedBox(
-              width: size,
+          elevation: 5.0,
+          borderRadius: BorderRadius.circular(66.0),
+          child: SizedBox(
+            width: size,
+            child: Form(
               child: TextFormField(
-                onTap: () => {formError.clearError(label)},
-                onChanged: (_) => {formError.clearError(label)},
+                onFieldSubmitted: (_) {
+                  save(context, controller);
+                  FocusScope.of(context).requestFocus(inputFocus);
+                },
+                autofocus: true,
+                onTapOutside: (_) {
+                  FocusScope.of(context).requestFocus(inputFocus);
+                },
                 maxLength: 20,
-                onSaved: (data) => validator.saveData(label, data ?? ""),
-                validator: (_) =>
-                    validator.validField(controller.text, formError, label),
                 obscureText: obscureText,
                 textAlign: TextAlign.center,
                 controller: controller,
@@ -76,7 +88,9 @@ class CustomInputField extends StatelessWidget {
                     prefixIcon: icon,
                     prefixIconColor: Colors.black),
               ),
-            )),
+            ),
+          ),
+        ),
         const Gap(20),
       ],
     );

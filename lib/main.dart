@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provaflutter/pages/notes_page.dart';
-import 'package:provaflutter/pages/policy_terms.dart';
+//import 'package:provaflutter/pages/policy_terms.dart';
 import 'package:provaflutter/utils/app_routes.dart';
 import 'package:provaflutter/components/custom_text_field.dart';
+import 'package:provaflutter/utils/launchurl.dart';
+import 'package:url_launcher/url_launcher.dart';
 import './models/login_validation.dart';
 
 import 'models/form_error.dart';
 
 void main() {
-  runApp(NotesPage());
-  //runApp(const MyApp());
+  //runApp(NotesPage());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Prova Flutter - Bruno Horvat',
       home: const MyHomePage(title: 'Prova Flutter'),
       routes: {
-        AppRoutes.policyTerms: (ctx) => const PolicyTerms(),
+        //AppRoutes.policyTerms: (ctx) => const PolicyTerms(),
         AppRoutes.notesPage: (ctx) => NotesPage()
       },
     );
@@ -45,6 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final LoginValidation _validator = LoginValidation();
   final bool _obscureText = false;
   final FormError formError = FormError();
+  final Uri uri =
+      Uri(scheme: 'https', host: 'www.google.com' /*, path: 'headers/'*/);
 
   void openPolicy() {
     Navigator.of(context).pushNamed(AppRoutes.policyTerms);
@@ -105,8 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
-                  onPressed: () {
-                    openPolicy();
+                  onPressed: () async {
+                    //openPolicy();
+                    launchURL();
                   },
                   child: const Text(
                     "Política de Privacidade",
