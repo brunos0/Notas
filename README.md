@@ -18,7 +18,7 @@ Version 1.0.0 - Bring Login screen, without any kind of validation. Implement We
 You tell
 
 ## Screen Shots
-<img width="260" src="https://github.com/brunos0/Notas/assets/49425249/ad875a5e-c284-41fe-89f9-dc185e151d85"><img width="260" src="https://github.com/brunos0/Notas/assets/49425249/467bed5a-70ca-4fc4-af14-d662e5812ee3">
+<img width="260" src="https://github.com/brunos0/Notas/assets/49425249/ad875a5e-c284-41fe-89f9-dc185e151d85">    <img width="260" src="https://github.com/brunos0/Notas/assets/49425249/467bed5a-70ca-4fc4-af14-d662e5812ee3">
 
 ## Give a try
 Install the apk and test it by yourself!
