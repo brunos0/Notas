@@ -101,7 +101,7 @@ abstract class ANotes with Store {
       BuildContext context, TextEditingController controller) async {
     bool? result = true;
 
-    if (notes.contains(controller.text) && !isEdit) {
+    if (notes.any((note) => note.trim() == controller.text.trim()) && !isEdit) {
       result = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) {
@@ -128,7 +128,7 @@ abstract class ANotes with Store {
     }
     if (result == false) return;
     if (result == true && !isEdit) {
-      notes.add(controller.text);
+      notes.add(controller.text.trim());
       controller.text = "";
     } else if (result == true && isEdit) {
       if (controller.text != editedString) {

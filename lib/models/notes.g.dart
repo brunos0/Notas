@@ -24,12 +24,58 @@ mixin _$Notes on ANotes, Store {
     });
   }
 
+  late final _$isEditAtom = Atom(name: 'ANotes.isEdit', context: context);
+
+  @override
+  bool get isEdit {
+    _$isEditAtom.reportRead();
+    return super.isEdit;
+  }
+
+  @override
+  set isEdit(bool value) {
+    _$isEditAtom.reportWrite(value, super.isEdit, () {
+      super.isEdit = value;
+    });
+  }
+
+  late final _$editedStringAtom =
+      Atom(name: 'ANotes.editedString', context: context);
+
+  @override
+  String get editedString {
+    _$editedStringAtom.reportRead();
+    return super.editedString;
+  }
+
+  @override
+  set editedString(String value) {
+    _$editedStringAtom.reportWrite(value, super.editedString, () {
+      super.editedString = value;
+    });
+  }
+
   late final _$removeAsyncAction =
       AsyncAction('ANotes.remove', context: context);
 
   @override
   Future<void> remove(int index, BuildContext context) {
     return _$removeAsyncAction.run(() => super.remove(index, context));
+  }
+
+  late final _$editAsyncAction = AsyncAction('ANotes.edit', context: context);
+
+  @override
+  Future<void> edit(
+      int index, BuildContext context, TextEditingController controller) {
+    return _$editAsyncAction.run(() => super.edit(index, context, controller));
+  }
+
+  late final _$saveAsyncAction = AsyncAction('ANotes.save', context: context);
+
+  @override
+  Future<void> save(BuildContext context, TextEditingController controller) {
+    return _$saveAsyncAction.run(() => super.save(context, controller));
   }
 
   late final _$loadListAsyncAction =
@@ -43,7 +89,9 @@ mixin _$Notes on ANotes, Store {
   @override
   String toString() {
     return '''
-notes: ${notes}
+notes: ${notes},
+isEdit: ${isEdit},
+editedString: ${editedString}
     ''';
   }
 }

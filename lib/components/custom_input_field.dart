@@ -15,6 +15,7 @@ class CustomInputField extends StatelessWidget {
   final FocusNode inputFocus;
   final GlobalKey<FormState> formKey;
   final Future<void> Function(BuildContext, TextEditingController) save;
+  final BuildContext ctx;
 
   const CustomInputField(
       this.label,
@@ -26,6 +27,7 @@ class CustomInputField extends StatelessWidget {
       this.inputFocus,
       this.formKey,
       this.save,
+      this.ctx,
       {super.key});
 
   @override
@@ -57,11 +59,11 @@ class CustomInputField extends StatelessWidget {
               child: TextFormField(
                 onFieldSubmitted: (_) {
                   save(context, controller);
-                  FocusScope.of(context).requestFocus(inputFocus);
+                  FocusScope.of(ctx).requestFocus(inputFocus);
                 },
                 autofocus: true,
                 onTapOutside: (_) {
-                  FocusScope.of(context).requestFocus(inputFocus);
+                  FocusScope.of(ctx).requestFocus(inputFocus);
                 },
                 maxLength: 20,
                 obscureText: obscureText,
